@@ -11,7 +11,6 @@ class About extends StatelessWidget {
     return Container(
       color: Colors.orange,
       child: Center(
-        //child: Card(
           child: Container(
             padding: EdgeInsets.all(20.0),
             child: Column(
@@ -23,7 +22,6 @@ class About extends StatelessWidget {
               ],
             ),
           ),
-        //),
       ),
     );
   }

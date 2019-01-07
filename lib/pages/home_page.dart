@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _onTabTapped, // new
+        onTap: _onTabTapped,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
