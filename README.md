@@ -4,6 +4,8 @@
 
 ### All the code is in the /lib folder
 
+### Put your Google Vision API key in /lib/components/take_picture.dart  "https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY";
+
 # Some pictures of the project
 
 ## Select an image
