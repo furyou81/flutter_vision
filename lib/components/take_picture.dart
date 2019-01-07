@@ -70,7 +70,7 @@ class _TakePictureState extends State<TakePicture> {
   void _sendRequestToAPI() {
     _responseList.clear();
     final String url =
-        "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBa8iDBKqVtWGnY7C7Xgwgcvd5C1M7IM8s";
+        "https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY";
 
     http
         .post(url,
