@@ -2,15 +2,16 @@
 
 A new Flutter project.
 
-## Getting Started
+# Some pictures of the project
 
-This project is a starting point for a Flutter application.
+## Select an image
+![Alt text](/pic/1.jpg?raw=true "Select a picture")
 
-A few resources to get you started if this is your first Flutter project:
+## From the camera or from the gallery
+![Alt text](/pic/2.jpg?raw=true "Select a picture")
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+## Display the image and send an API request
+![Alt text](/pic/3.jpg?raw=true "Select a picture")
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Display the result from Google Vision API
+![Alt text](/pic/4.jpg?raw=true "Select a picture")
