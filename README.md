@@ -1,7 +1,8 @@
 # flutter_camera
 
-To start the App, after installing Flutter, open the project with Visual Studio Code, then start an emulator (iOS or Android) or connect your physical device to your computer. Then in Visual Studio Code press fn 
-All the code is in the /lib folder
+### To start the App, after installing Flutter, open the project with Visual Studio Code, then start an emulator (iOS or Android) or connect your physical device to your computer. Then in Visual Studio Code press fn + control + F5 
+
+### All the code is in the /lib folder
 
 # Some pictures of the project
 
