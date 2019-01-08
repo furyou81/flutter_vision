@@ -19,3 +19,9 @@
 
 ## Display the result from Google Vision API
 ![Alt text](/pic/4.jpg?raw=true "Select a picture")
+
+## Adding a picture to AWS bucket with the name of the person
+![Alt text](/pic/5.jpg?raw=true "Add to bucket")
+
+## Display the result from our own AWS model based on the previously uploaded pictures
+![Alt text](/pic/6.jpg?raw=true "Identify the person")
