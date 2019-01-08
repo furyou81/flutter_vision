@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../components/take_picture.dart';
 import '../components/about.dart';
+import '../components/aws.dart';
 
 class HomePage extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
-      return _HomePageState();
-    }
+  State<StatefulWidget> createState() {
+    return _HomePageState();
+  }
 }
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     TakePicture(),
+    AWS(),
     About(),
   ];
 
@@ -27,7 +29,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Camera', style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),),
+        title: Text(
+          'Camera',
+          style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+        ),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -37,6 +42,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: new Icon(Icons.camera_enhance),
             title: new Text('Take a picture'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.ac_unit),
+            title: new Text('AWS'),
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.person),

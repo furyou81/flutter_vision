@@ -1,0 +1,43 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+		        "s3:PutObjectAcl",
+		        "s3:GetObject",
+		        "s3:GetObjectAcl",
+		        "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::flutter-vision/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:eu-west-1:490327723691:table/family_collection"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "rekognition:IndexFaces"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
