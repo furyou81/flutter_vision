@@ -6,6 +6,8 @@
 
 ### Put your Google Vision API key in /lib/components/take_picture.dart  "https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY";
 
+### to configure AWS https://aws.amazon.com/blogs/machine-learning/build-your-own-face-recognition-service-using-amazon-rekognition/
+
 # Some pictures of the project
 
 ## Select an image
