@@ -16,6 +16,8 @@ exports.aws = {
     bucket: "YOURS"
 }
 
+### in the conf.dart file, please put your server IP
+
 # Some pictures of the project
 
 ## Select an image
