@@ -8,6 +8,14 @@
 
 ### to configure AWS https://aws.amazon.com/blogs/machine-learning/build-your-own-face-recognition-service-using-amazon-rekognition/
 
+### In the server/ folder, create a conf.js file with the as bellow
+exports.aws = {
+    accessKeyId: "YOURS",
+    secretAccessKey: "YOURS",
+    region: "YOURS",
+    bucket: "YOURS"
+}
+
 # Some pictures of the project
 
 ## Select an image
