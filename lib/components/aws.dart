@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import './response_element.dart';
+import '../conf.dart';
 
 class AWS extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _AWSState extends State<AWS> {
 
   void _sendRequestToAPI() {
     _responseList.clear();
-    final String url = "http://192.168.1.100:4000/api/aws/analysis";
+    final String url = "$LOCAL_API:4000/api/aws/analysis";
 
     http.post(url, body: {
       "image": _convertToBase64(),
@@ -91,15 +92,13 @@ class _AWSState extends State<AWS> {
 
   void _doIt() {
     _responseList.clear();
-    final String url = "http://192.168.1.100:4000/api/aws/addToBucket";
+    final String url = "$LOCAL_API:4000/api/aws/addToBucket";
 
-    http.post(url, body: {
-      "image": _convertToBase64(),
-      "name": _name
-    }).then((response) {
+    http.post(url, body: {"image": _convertToBase64(), "name": _name}).then(
+        (response) {
       print("ADD TO BUCKET");
       print(response.body.toString());
-    //  List<dynamic> j = jsonDecode(response.body);
+      //  List<dynamic> j = jsonDecode(response.body);
       setState(() {
         _responseList.add(ResponseElement(
           description: "added",
@@ -157,56 +156,54 @@ class _AWSState extends State<AWS> {
                 : Column(
                     children: <Widget>[
                       Form(
-                      key: _addKey,
-                      child: Stack(
-                        children: <Widget>[
+                        key: _addKey,
+                        child: Stack(
+                          children: <Widget>[
                             Container(
                               padding: EdgeInsets.all(20.0),
-                              child: 
-                                  TextFormField(
-                                    keyboardType: TextInputType.emailAddress,
-                                    autovalidate: _submitted ? true : false,
-                                    validator: (String value) {
-                                      if (value.isEmpty || value.trim().length <= 0)
-                                        return "Missing name";
-                                    },
-                                    decoration: InputDecoration(
-                                        labelText: 'Name',
-                                        fillColor: Colors.white,
-                                        icon: Icon(Icons.email),
-                                        filled: true),
-                                    onSaved: (String value) {
-                                      // setState(() {
-                                      _name = value.trim();
-                                      //  });
-                                    },
-                                  ),
-                            ),
-                          Container(
-                            margin: EdgeInsets.only(top: 170.0),
-                            child: Center(
-                              child: SizedBox(
-                                width: 240.0,
-                                child: RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                        ),
-                                        color: Colors.orange,
-                                        onPressed: () => _addToBucket(context),
-                                        child: Text(
-                                          "Add to bucket",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
+                              child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                autovalidate: _submitted ? true : false,
+                                validator: (String value) {
+                                  if (value.isEmpty || value.trim().length <= 0)
+                                    return "Missing name";
+                                },
+                                decoration: InputDecoration(
+                                    labelText: 'Name',
+                                    fillColor: Colors.white,
+                                    icon: Icon(Icons.email),
+                                    filled: true),
+                                onSaved: (String value) {
+                                  // setState(() {
+                                  _name = value.trim();
+                                  //  });
+                                },
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              margin: EdgeInsets.only(top: 170.0),
+                              child: Center(
+                                child: SizedBox(
+                                  width: 240.0,
+                                  child: RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    color: Colors.orange,
+                                    onPressed: () => _addToBucket(context),
+                                    child: Text(
+                                      "Add to bucket",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
                       Stack(
                         children: <Widget>[
                           Container(
