@@ -1,14 +1,14 @@
 const AWS = require('aws-sdk');
+const conf = require('../conf');
 const config = new AWS.Config({
-    accessKeyId: "YOURS",
-    secretAccessKey: "YOURS",
-    region: "eu-west-1",
-    bucket: "flutter-vision"
+    accessKeyId: conf.aws.accessKeyId,
+    secretAccessKey: conf.aws.secretAccessKey,
+    region: conf.aws.region,
+    bucket: conf.aws.bucket
 });
 const fs = require("fs");
 const rekognition = new AWS.Rekognition(config);
 var dynamodb = new AWS.DynamoDB(config);
-
 
 exports.analysis = async (req, res) => {
     console.log(req.body)
@@ -47,9 +47,14 @@ await fs.writeFileSync('image.png', req.body.image, {encoding: 'base64'});
 
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: "error"})
     }
 
 
 
+
+}
+
+exports.addToBucket = async (req, res) => {
 
 }

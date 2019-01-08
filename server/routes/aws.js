@@ -6,5 +6,5 @@ const awsController = require('../controllers/aws');
 
 //user.post('/login', userController.login);
 aws.post('/analysis', awsController.analysis);
-//aws.post('/addToBucket', awsController.addToBucket);
+aws.post('/addToBucket', awsController.addToBucket);
 module.exports = aws;
