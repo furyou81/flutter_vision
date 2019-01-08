@@ -14,8 +14,11 @@ class AWS extends StatefulWidget {
 }
 
 class _AWSState extends State<AWS> {
+  final GlobalKey<FormState> _addKey = GlobalKey<FormState>();
   File _imageFile;
   List<Widget> _responseList = [];
+  String _name = '';
+  bool _submitted = false;
 
   void _getImage(BuildContext context, ImageSource source) {
     ImagePicker.pickImage(
@@ -86,6 +89,39 @@ class _AWSState extends State<AWS> {
     });
   }
 
+  void _doIt() {
+    _responseList.clear();
+    final String url = "http://192.168.1.100:4000/api/aws/addToBucket";
+
+    http.post(url, body: {
+      "image": _convertToBase64(),
+      "name": _name
+    }).then((response) {
+      print("ADD TO BUCKET");
+      print(response.body.toString());
+    //  List<dynamic> j = jsonDecode(response.body);
+      setState(() {
+        _responseList.add(ResponseElement(
+          description: "added",
+          score: response.statusCode * 1.0,
+        ));
+      });
+    });
+  }
+
+  void _addToBucket(BuildContext context) {
+    if (_addKey.currentState.validate()) {
+      _addKey.currentState
+          .save(); // it calls the onSaved() methods of the forms
+      print("$_name");
+      _doIt();
+    } else {
+      setState(() {
+        _submitted = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -120,6 +156,57 @@ class _AWSState extends State<AWS> {
                 ? Text('Please pick an image')
                 : Column(
                     children: <Widget>[
+                      Form(
+                      key: _addKey,
+                      child: Stack(
+                        children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(20.0),
+                              child: 
+                                  TextFormField(
+                                    keyboardType: TextInputType.emailAddress,
+                                    autovalidate: _submitted ? true : false,
+                                    validator: (String value) {
+                                      if (value.isEmpty || value.trim().length <= 0)
+                                        return "Missing name";
+                                    },
+                                    decoration: InputDecoration(
+                                        labelText: 'Name',
+                                        fillColor: Colors.white,
+                                        icon: Icon(Icons.email),
+                                        filled: true),
+                                    onSaved: (String value) {
+                                      // setState(() {
+                                      _name = value.trim();
+                                      //  });
+                                    },
+                                  ),
+                            ),
+                          Container(
+                            margin: EdgeInsets.only(top: 170.0),
+                            child: Center(
+                              child: SizedBox(
+                                width: 240.0,
+                                child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        color: Colors.orange,
+                                        onPressed: () => _addToBucket(context),
+                                        child: Text(
+                                          "Add to bucket",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                       Stack(
                         children: <Widget>[
                           Container(
@@ -139,10 +226,10 @@ class _AWSState extends State<AWS> {
                           ),
                           Positioned(
                             bottom: 0.0,
-                            left: 25.0,
+                            left: 55.0,
                             child: RaisedButton(
                               child: Text(
-                                "Send API request",
+                                "Identify",
                                 style: TextStyle(color: Colors.white),
                               ),
                               shape: RoundedRectangleBorder(
@@ -152,6 +239,21 @@ class _AWSState extends State<AWS> {
                                   _imageFile != null ? _sendRequestToAPI : null,
                             ),
                           ),
+                          // Positioned(
+                          //   top: 0.0,
+                          //   left: 40.0,
+                          //   child: RaisedButton(
+                          //     child: Text(
+                          //       "Add to model",
+                          //       style: TextStyle(color: Colors.white),
+                          //     ),
+                          //     shape: RoundedRectangleBorder(
+                          //         borderRadius: BorderRadius.circular(25.0)),
+                          //     color: Colors.orange,
+                          //     onPressed:
+                          //         _imageFile != null ? _addToBucket : null,
+                          //   ),
+                          // ),
                         ],
                       ),
                       SizedBox(
